@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant - Home</title>
+
+    <!-- Internal CSS starts here -->
+    <style>
+        /* =========================
+            Global Styles
+        ========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #fff8f0; /* soft cream background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* =========================
+            Header & Navigation
+        ========================= */
+     
+
+        body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff8f0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2%;
+    background-color: #ff6f3c;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+}
+
+/* Navigation links horizontal */
+nav {
+    display: flex;
+    flex-wrap: wrap; /* wrap links on small screens */
+    gap: 1rem;
+}
+        header:hover {
+            background-color: #ff7f50;
+        }
+
+       
+
+
+header .logo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;                /* Make nav items horizontal */
+    gap: 2rem;                    /* Space between links */
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffe8d6;
+}
+
+        nav a::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 0;
+            background: #ffe8d6;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* =========================
+            Hero Section
+        ========================= */
+        .hero {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+      .hero iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;   /* full width */
+    height: 100%;  /* full height */
+    max-height: 100vh; /* never taller than viewport */
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+        .hero-text {
+            text-align: center;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+            animation: fadeInUp 1.5s ease forwards;
+        }
+
+        .hero-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-text .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background-color: #ff6f3c;
+            color: #fff;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .hero-text .btn:hover {
+            background-color: #ff7f50;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* =========================
+            Featured Section
+        ========================= */
+        .featured {
+            padding: 4rem 3rem;
+            background-color: #fff4e6;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .featured h2 {
+            width: 100%;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #ff6f3c;
+        }
+
+        .featured .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 220px;
+        }
+
+        .featured .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .featured .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ff6f3c;
+        }
+
+        .featured .card p {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .featured .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+
+        .featured .card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* =========================
+            Footer
+        ========================= */
+        footer {
+            padding: 2rem 3rem;
+            background-color: #ff6f3c;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        /* =========================
+            Responsive
+        ========================= */
+        @media(max-width: 768px) {
+            nav { flex-direction: column; gap: 0.5rem; }
+            .hero-text h2 { font-size: 2rem; }
+            .featured .card { width: 45%; }
+        }
+
+        @media(max-width: 480px) {
+            .featured .card { width: 100%; }
+        }
+    </style>
+    <!-- Internal CSS ends here -->
+
+</head>
+<body>
+
+<header>
+    <h1 class="logo">MyRestaurant</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+</header>
+
+<!-- HERO VIDEO -->
+<section class="hero">
+    <iframe 
+        src="https://www.youtube.com/embed/ZnmWg4-y3Ak?autoplay=1&mute=1&loop=1&playlist=ZnmWg4-y3Ak"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+    </iframe>
+
+    <div class="hero-text">
+        
+        <a href="menu.html" "></a>
+    </div>
+</section>
+    <div class="hero-text">
+        <h2>Delicious Food Experience</h2>
+        <a href="menu.html" class="btn">Order Now</a>
+    </div>
+</section>
+
+<!-- FEATURED -->
+<section class="featured">
+    <h2>Popular Dishes</h2>
+
+    <div class="card">
+        <img src="images\palaw.png">
+        <h3>Qabuli Palaw</h3>
+        <p>$10</p>
+    </div>
+
+    <div class="card">
+        <img src="images\homemade_food.png">
+        <h3>Homemade Food</h3>
+        <p>$15</p>
+    </div>
+
+    <div class="card">
+        <img src="images\Chicken Bryani.png">
+        <h3>Chicken Biryani</h3>
+        <p>$12</p>
+    </div>
+    <div class="card">
+        <img src="images\Kofta.png">
+        <h3>Meatball</h3>
+        <p>$12</p>
+    </div>
+     <div class="card">
+        <img src="images\pasta.png">
+        <h3>Pasta</h3>
+        <p>$12</p>
+    </div>
+    
+     <div class="card">
+        <img src="images\kabab.png">
+        <h3>Kabab</h3>
+        <p>$12</p>
+    </div>
+    <div class="card">
+        <img src="images\Manto.png">
+        <h3>Mantoo</h3>
+        <p>$12</p>
+    </div>
+     <div class="card">
+        <img src="images\eggPlant.png">
+        <h3>Egg Plant</h3>
+        <p>$12</p>
+    </div>
+     <div class="card">
+        <img src="images\bolani.png">
+        <h3>Bolani</h3>
+        <p>$12</p>
+    </div>
+     <div class="card">
+        <img src="images\Chips.png">
+        <h3>Chips</h3>
+        <p>$12</p>
+</section>
+
+<footer>
+    
+
+    <div id="google_translate_element"></div>
+</footer>
+
+<script src="js/cart.js"></script>
+
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+</html>

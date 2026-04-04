@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restaurant - Contact</title>
+
+<style>
+/* =========================
+   Global Styles
+========================= */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff8f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* =========================
+   Header
+========================= */
+header {
+    background: #ff6f3c;
+    color: white;
+    padding: 15px 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffe8d6;
+}
+
+/* =========================
+   Contact Section
+========================= */
+.contact {
+    flex: 1;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ff6f3c;
+}
+
+.contact p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+/* =========================
+   Contact Form
+========================= */
+.contact-form {
+    margin: 40px auto 0;
+    max-width: 500px;
+    text-align: left;
+    background: #fff4e6;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    resize: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #ff6f3c;
+    box-shadow: 0 0 5px rgba(255,111,60,0.5);
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    background-color: #ff6f3c;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #ff7f50;
+    transform: scale(1.05);
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+    background-color: #ff6f3c;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem 2rem;
+    margin-top: auto; /* stick to bottom */
+    font-size: 0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1 class="logo">MyRestaurant</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart (0)</a>
+    </nav>
+</header>
+
+<!-- CONTACT SECTION -->
+<section class="contact">
+    <h2>Contact Us</h2>
+    <p>Email: contact@saffrondelight.com</p>
+    <p>Phone: +1 (555) 789-1234</p>
+
+    <!-- Contact Form -->
+    <form class="contact-form" action="https://formspree.io/f/xykbdkkp" method="post">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Your name..." required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your email..." required>
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="Subject..." required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    &copy; 2026 MyRestaurant. All Rights Reserved.
+</footer>
+
+</body>
+</html>

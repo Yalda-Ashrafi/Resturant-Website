@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyRestaurant - Cart</title>
+    <!-- Header CSS -->
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background-color: #ff6f3c;
+            color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header .logo { font-size: 2rem; font-weight: bold; }
+        nav { display: flex; gap: 2rem; }
+        nav a { text-decoration: none; color: #fff; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: #ffe8d6; }
+
+        /* Cart Section */
+        .cart {
+            max-width: 600px;
+            margin: 120px auto 50px; /* 120px top to avoid sticky header */
+            padding: 20px;
+            background: #fff4e6;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .cart h2 { margin-bottom: 1rem; color: #ff6f3c; }
+        .cart ul { list-style: none; padding: 0; margin-bottom: 1rem; }
+        .cart li { padding: 10px 0; border-bottom: 1px solid #ddd; }
+        .cart h3 { margin-top: 1rem; }
+        .cart button {
+            padding: 10px 20px;
+            background-color: #ff6f3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .cart button:hover { background-color: #ff7f50; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1 class="logo">MyRestaurant</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="menu.html">Menu</a>
+            <a href="about.html">About</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact</a>
+            <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+        </nav>
+    </header>
+
+    <!-- Cart Section -->
+    <section class="cart">
+        <h2>Your Cart</h2>
+        <ul id="cart-items"></ul>
+        <h3 id="total"></h3>
+        <button onclick="checkout()">Checkout</button>
+    </section>
+
+    <script src="js/cart.js"></script>
+    <script>showCart();</script>
+</body>
+</html>
