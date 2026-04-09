@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyRestaurant - Cart</title>
+    <!-- Header CSS -->
+    <style>
+        /* Header & Navigation */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background-color: #ff6f3c; /* Restoring the solid orange matching colors */
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header .logo {
+            font-family: 'Playfair Display', serif; /* Elegant heading */
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: Arial, sans-serif; /* Familiar, not too crazy */
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            margin: 0;
+        }
+
+        nav a:hover, nav a.active {
+            color: #ffe8d6;
+        }
+
+        /* Mobile Nav Flexibility */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        @media(max-width: 768px) {
+            .mobile-toggle { display: block; }
+            #main-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ff6f3c;
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            #main-nav.show { display: flex; }
+            #main-nav a { padding: 10px 20px; width: 100%; text-align: left; }
+        }
+
+
+        
+        
+        
+        
+        
+
+        /* Cart Section */
+        /* Complete Checkout UI CSS */
+        .cart-wrapper {
+            max-width: 800px;
+            margin: 60px auto 50px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .checkout-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            padding: 30px;
+            border-top: 5px solid #ff6f3c;
+        }
+
+        .checkout-card h2 {
+            margin-top: 0;
+            color: #ff6f3c;
+            border-bottom: 2px solid #fff4e6;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Cart Items Receipt Style */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px dashed #ddd;
+            font-size: 1.1rem;
+        }
+        .cart-item.empty {
+            justify-content: center;
+            color: #888;
+            border: none;
+            padding: 30px 0;
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 20px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Dining Options */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .option-btn {
+            background: #fff8f0;
+            border: 2px solid #ffe8d6;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff6f3c;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .option-btn i { font-size: 2rem; }
+        .option-btn:hover { background: #ffe8d6; transform: translateY(-3px); }
+        .option-btn.selected {
+            background: #ff6f3c;
+            color: white;
+            border-color: #ff6f3c;
+            box-shadow: 0 5px 15px rgba(255,111,60,0.3);
+        }
+
+        /* Payment Section */
+        #payment-section {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .pay-btn {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .pay-btn:hover { border-color: #ff6f3c; color: #ff6f3c; }
+        .pay-btn.selected {
+            border-color: #ff6f3c;
+            background: #fff8f0;
+            color: #ff6f3c;
+        }
+
+        .proceed-btn {
+            width: 100%;
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 1.3rem;
+            background-color: #ccc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: not-allowed;
+            transition: all 0.3s;
+        }
+        .proceed-btn.active {
+            background-color: #28a745;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(40,167,69,0.3);
+        }
+        .proceed-btn.active:hover {
+            background-color: #218838;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-box {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: zoomIn 0.3s ease;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff6f3c;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .star-rating i {
+            font-size: 2.2rem;
+            color: #dddddd;
+            cursor: pointer;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .star-rating i:hover { transform: scale(1.1); }
+        .star-rating i.hover, .star-rating i.active {
+            color: #ffca28;
+        }
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+        .rating-btn {
+            background: #ff6f3c;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            display: none;
+            margin: 15px auto 0;
+            transition: background 0.3s;
+        }
+        .rating-btn:hover { background: #ff7f50; box-shadow: 0 5px 15px rgba(255,111,60,0.3); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+    <h1 class="logo">MyRestaurant</h1>
+    <button class="mobile-toggle" onclick="toggleNav()"><i class="fa-solid fa-bars"></i></button>
+    <nav id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+</header>
+
+    <!-- Cart Section -->
+    <div class="cart-wrapper">
+        <!-- Receipt Section -->
+        <div class="checkout-card">
+            <h2><i class="fa-solid fa-receipt"></i> Order Summary</h2>
+            <div id="cart-items-container">
+                <!-- Items injected here by showCart() -->
+            </div>
+            <div class="cart-total" id="total">
+                <span>Total:</span>
+                <span>$0</span>
+            </div>
+        </div>
+
+        <!-- Dining Option Section -->
+        <div class="checkout-card" id="dining-section" style="display: none;">
+            <h2><i class="fa-solid fa-bell-concierge"></i> Dining Option</h2>
+            <div class="options-grid">
+                <button class="option-btn" id="opt-eathere" onclick="selectDining('Eat Here')">
+                    <i class="fa-solid fa-utensils"></i> Eat Here
+                </button>
+                <button class="option-btn" id="opt-takeaway" onclick="selectDining('Take Away')">
+                    <i class="fa-solid fa-bag-shopping"></i> Take Away
+                </button>
+            </div>
+        </div>
+
+        <!-- Payment Section -->
+        <div class="checkout-card" id="payment-section">
+            <h2><i class="fa-solid fa-credit-card"></i> Payment Method</h2>
+            <div class="payment-grid">
+                <button class="pay-btn" id="pay-cash" onclick="selectPayment('Cash')"><i class="fa-solid fa-money-bill-wave"></i> Cash</button>
+                <button class="pay-btn" id="pay-card" onclick="selectPayment('Card')"><i class="fa-solid fa-credit-card"></i> Card</button>
+                <button class="pay-btn" id="pay-tng" onclick="selectPayment('TNG')"><i class="fa-solid fa-mobile-screen"></i> Touch 'n Go</button>
+                <button class="pay-btn" id="pay-bank" onclick="selectPayment('Bank')"><i class="fa-solid fa-building-columns"></i> Bank</button>
+            </div>
+            
+            <button class="proceed-btn" id="proceed-btn" disabled onclick="processPayment()">Proceed & Pay <i class="fa-solid fa-check"></i></button>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal-overlay" id="payment-modal">
+        <div class="modal-box">
+            
+            <div id="modal-processing">
+                <div class="spinner"></div>
+                <h3>Processing Payment...</h3>
+                <p style="color:#777; margin-top:10px;">Connecting to secure gateway</p>
+            </div>
+            
+            <div id="modal-success" style="display: none;">
+                <i class="fa-solid fa-circle-check success-icon"></i>
+                <h2 style="color:#28a745;">Payment Successful!</h2>
+                <p>Your order has been placed.</p>
+                
+                <hr style="margin: 25px 0; border: 0; border-top: 1px solid #eeeeee;">
+                
+                <h3 style="color:#333;">Rate your experience!</h3>
+                <div class="star-rating" id="star-rating">
+                    <i class="fa-solid fa-star" data-val="1"></i>
+                    <i class="fa-solid fa-star" data-val="2"></i>
+                    <i class="fa-solid fa-star" data-val="3"></i>
+                    <i class="fa-solid fa-star" data-val="4"></i>
+                    <i class="fa-solid fa-star" data-val="5"></i>
+                </div>
+                <button class="rating-btn" id="submit-rating-btn" onclick="submitRating()">Submit & Return to Menu</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="cart.js"></script>
+    <script>showCart();</script>
+<script>
+    function toggleNav() {
+        var nav = document.getElementById('main-nav');
+        if(nav) nav.classList.toggle('show');
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - MyRestaurant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* Header & Navigation */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 3rem;
+            background-color: #ff6f3c;
+            /* Restoring the solid orange matching colors */
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header .logo {
+            font-family: 'Playfair Display', serif;
+            /* Elegant heading */
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            font-family: Arial, sans-serif;
+            /* Familiar, not too crazy */
+            text-decoration: none;
+            color: #fff;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+            margin: 0;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffe8d6;
+        }
+
+        /* Mobile Nav Flexibility */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        @media(max-width: 768px) {
+            .mobile-toggle { display: block; }
+            #main-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ff6f3c;
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            #main-nav.show { display: flex; }
+            #main-nav a { padding: 10px 20px; width: 100%; text-align: left; }
+        }
+
+
+        /* =========================
+   Global Styles
+========================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fff8f0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* =========================
+   Header
+========================= */
+
+
+
+
+
+
+
+
+
+
+        /* =========================
+   Menu Section
+========================= */
+        .menu {
+            flex: 1;
+            padding: 3rem 2%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .menu h2 {
+            width: 100%;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #ff6f3c;
+        }
+
+        .pill-tab-container {
+            display: inline-flex;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 50px;
+            padding: 6px;
+            gap: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .pill-tab-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .pill-tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: Arial, sans-serif;
+            color: #555;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .pill-tab i {
+            font-size: 1.1em;
+        }
+
+        .pill-tab.active {
+            background-color: #E2E2E2;
+            border: 1px solid #c9c9c9;
+            color: #000;
+        }
+
+        .pill-tab:hover:not(.active) {
+            background-color: #fafafa;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .menu-card {
+            background: #fff;
+            border-radius: 15px;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .menu-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ff6f3c;
+            flex-grow: 1;
+        }
+
+        .menu-card p {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-card button {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            background-color: #ff6f3c;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            margin-top: auto;
+            /* Push to bottom */
+        }
+
+        .menu-card button:hover {
+            background-color: #ff7f50;
+            transform: scale(1.05);
+        }
+
+        .menu-category {
+            display: none;
+        }
+
+        .menu-category.active-category {
+            display: contents;
+        }
+
+        .btn-checkout {
+            background-color: #ff6f3c;
+            color: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-checkout:hover:not(.disabled-btn) {
+            background-color: #ff7f50;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            color: #fff;
+        }
+
+        .disabled-btn {
+            background-color: #cccccc !important;
+            color: #666666 !important;
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* =========================
+   Footer
+========================= */
+        footer {
+            background-color: #ff6f3c;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem 2rem;
+            margin-top: auto;
+            /* stick to bottom */
+            font-size: 0.9rem;
+        }
+
+        #google_translate_element {
+            margin-top: 0.5rem;
+        }
+
+        /* =========================
+   Responsive
+========================= */
+        @media (max-width: 768px) {
+
+            .menu .card {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu .card {
+                width: 100%;
+            }
+
+            .menu h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+    <h1 class="logo">MyRestaurant</h1>
+    <button class="mobile-toggle" onclick="toggleNav()"><i class="fa-solid fa-bars"></i></button>
+    <nav id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+</header>
+
+    <!-- Menu Section -->
+    <section class="menu">
+        <h2>Our Menu</h2>
+
+        <div class="pill-tab-container">
+            <button class="pill-tab active" onclick="showCategory('appetizer', this)">
+                <i class="fa-solid fa-bowl-food"></i> Appetizer
+            </button>
+            <button class="pill-tab" onclick="showCategory('main-dish', this)">
+                <i class="fa-solid fa-utensils"></i> Main Dish
+            </button>
+            <button class="pill-tab" onclick="showCategory('fast-food', this)">
+                <i class="fa-solid fa-burger"></i> Fast Food
+            </button>
+            <button class="pill-tab" onclick="showCategory('salads', this)">
+                <i class="fa-solid fa-leaf"></i> Salads
+            </button>
+            <button class="pill-tab" onclick="showCategory('drinks', this)">
+                <i class="fa-solid fa-mug-hot"></i> Drinks
+            </button>
+            <button class="pill-tab" onclick="showCategory('dessert', this)">
+                <i class="fa-solid fa-ice-cream"></i> Dessert
+            </button>
+        </div>
+
+        <div class="menu-grid">
+            <!-- Appetizer -->
+            <div id="appetizer" class="menu-category active-category">
+                <div class="menu-card">
+                    <img src="images/soup_appetizer.png" alt="Soup">
+                    <h3>Soup</h3>
+                    <p>$8</p>
+                    <button onclick="addToCart('Soup', 8)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Main Dish -->
+            <div id="main-dish" class="menu-category">
+                <div class="menu-card"><img src="images/palaw.png" alt="Gabuli Pallow">
+                    <h3>Gabuli Pallow</h3>
+                    <p>$18</p><button onclick="addToCart('Gabuli Pallow', 18)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/Kofta.png" alt="Meat Balls">
+                    <h3>Meat Balls</h3>
+                    <p>$15</p><button onclick="addToCart('Meat Balls', 15)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/eggPlant.png" alt="Eggplants">
+                    <h3>Eggplants</h3>
+                    <p>$12</p><button onclick="addToCart('Eggplates', 12)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/Manto.png" alt="Manto">
+                    <h3>Manto</h3>
+                    <p>$14</p><button onclick="addToCart('Manto', 14)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/kabab.png" alt="Kabab">
+                    <h3>Kabab</h3>
+                    <p>$16</p><button onclick="addToCart('Kabab', 16)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/Sikh_Kabab.png" alt="Sikh Kabab">
+                    <h3>Sikh Kabab</h3>
+                    <p>$17</p><button onclick="addToCart('Sikh Kabab', 17)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/Ashak.png" alt="Ashak">
+                    <h3>Ashak</h3>
+                    <p>$13</p><button onclick="addToCart('Ashak', 13)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/bolani.png" alt="Bolani">
+                    <h3>Bolani</h3>
+                    <p>$10</p><button onclick="addToCart('Bolani', 10)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/homemade_food.png" alt="Home Made Food">
+                    <h3>Home Made Food</h3>
+                    <p>$12</p><button onclick="addToCart('Home Made Food', 12)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Fast Food -->
+            <div id="fast-food" class="menu-category">
+                <div class="menu-card"><img src="images/Burger.png" alt="Burger">
+                    <h3>Burger</h3>
+                    <p>$10</p><button onclick="addToCart('Burger', 10)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/Chips.png" alt="Chips">
+                    <h3>Chips</h3>
+                    <p>$5</p><button onclick="addToCart('Chips', 5)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/pizza.png" alt="Pizza">
+                    <h3>Pizza</h3>
+                    <p>$15</p><button onclick="addToCart('Pizza', 15)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/pasta.png" alt="Pasta">
+                    <h3>Pasta</h3>
+                    <p>$12</p><button onclick="addToCart('Pasta', 12)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/egg tomato.png" alt="Egg">
+                    <h3>Egg</h3>
+                    <p>$6</p><button onclick="addToCart('Egg', 6)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Salads -->
+            <div id="salads" class="menu-category">
+                <div class="menu-card"><img src="images/afghan_salad.png" alt="Afghan Salad">
+                    <h3>Afghan Salad</h3>
+                    <p>$7</p><button onclick="addToCart('Afghan Salad', 7)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Drinks -->
+            <div id="drinks" class="menu-category">
+                <div class="menu-card"><img src="images/green_tea_drink.png" alt="Green Tea">
+                    <h3>Green Tea</h3>
+                    <p>$3</p><button onclick="addToCart('Green Tea', 3)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/black_tea_drink.png" alt="Black Tea">
+                    <h3>Black Tea</h3>
+                    <p>$3</p><button onclick="addToCart('Black Tea', 3)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/yogurt_drink.png" alt="Yogurt Drink">
+                    <h3>Yogurt Drink</h3>
+                    <p>$4</p><button onclick="addToCart('Yogurt Drink', 4)">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Dessert -->
+            <div id="dessert" class="menu-category">
+                <div class="menu-card"><img src="images/IceCream.webp" alt="Ice Cream">
+                    <h3>Ice Cream</h3>
+                    <p>$6</p><button onclick="addToCart('Ice Cream', 6)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/ShirYakh.webp" alt="Milk Shake">
+                    <h3>Milk Shake</h3>
+                    <p>$7</p><button onclick="addToCart('Milk Shake', 7)">Add to Cart</button>
+                </div>
+                <div class="menu-card"><img src="images/chocolate_cake.png" alt="Cake">
+                    <h3>Cake</h3>
+                    <p>$8</p><button onclick="addToCart('Cake', 8)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proceed to Cart Button -->
+        <div style="width: 100%; text-align: center; margin-top: 40px;">
+            <a id="menu-checkout-btn" class="btn-checkout disabled-btn" style="text-decoration: none; padding: 15px 40px; font-size: 1.2rem; border-radius: 30px; font-weight: bold; transition: all 0.3s; display: inline-block;">
+                Proceed to Checkout <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 MyRestaurant. All Rights Reserved.
+        <div id="google_translate_element"></div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script>
+        function showCategory(categoryId, btn) {
+            var tabs = document.querySelectorAll('.pill-tab');
+            tabs.forEach(function (t) { t.classList.remove('active'); });
+            btn.classList.add('active');
+
+            var categories = document.querySelectorAll('.menu-category');
+            categories.forEach(function (c) {
+                c.classList.remove('active-category');
+            });
+            document.getElementById(categoryId).classList.add('active-category');
+        }
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+    function toggleNav() {
+        var nav = document.getElementById('main-nav');
+        if(nav) nav.classList.toggle('show');
+    }
+</script>
+</body>
+
+</html>

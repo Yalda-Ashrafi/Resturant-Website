@@ -1,0 +1,438 @@
+<!-- // HTML Section // -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyRestaurant - About</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+    <h1 class="logo">MyRestaurant</h1>
+    <button class="mobile-toggle" onclick="toggleNav()"><i class="fa-solid fa-bars"></i></button>
+    <nav id="main-nav">
+        <a href="index.html">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="about.html">About</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+    </nav>
+</header>
+
+    <section class="about-section">
+        <div class="about-container">
+
+            <!-- LEFT SIDE: Picture & Socials -->
+            <div class="left-side" id="aboutLeft">
+                <!-- 3D Flip Card Effect -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <!-- First Image (Front) -->
+                        <div class="flip-card-front">
+                            <img src="images/15.avif" alt="Restaurant Interior">
+                        </div>
+                        <!-- Second Image (Back) -->
+                        <div class="flip-card-back">
+                            <img src="images/17.avif" alt="Fresh Ingredients">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Icons (Fixed, correctly spaced) -->
+                <div class="social-icons">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE: Text Description -->
+            <div class="right-side" id="aboutRight">
+                <h2>A Culinary Journey</h2>
+                <p>
+                    Welcome to MyRestaurant, a place where tradition meets modern culinary artistry.
+                    For over two decades, we have dedicated ourselves to crafting unforgettable dining
+                    experiences. Our secret ingredient? A relentless passion for sourcing the highest
+                    quality, locally-grown ingredients and preparing them with time-honored techniques.
+                </p>
+                <p>
+                    From the sizzle of our legendary kababs to the comforting warmth of our freshly
+                    baked bolani, every plate tells a story. We invite you to join our family table,
+                    where every meal is a celebration of flavor, culture, and community.
+                </p>
+                <!-- "Order Now" Button replacing text/menu sign -->
+                <a href="menu.html" class="btn-order">Order Now</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Cleaned out redundant menu section -->
+
+    <!-- // CSS Section // -->
+    <style>
+        /* Advanced About Page Styles */
+        body {
+            background-color: #fff8f0;
+            /* Off-white matching contact page */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #ff6f3c;
+            /* Orange text */
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header matching contact page */
+        header {
+            background: #ff6f3c;
+            color: white;
+            padding: 15px 3%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #ffe8d6;
+        }
+
+        /* Mobile Nav Flexibility */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        @media(max-width: 768px) {
+            .mobile-toggle { display: block; }
+            #main-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ff6f3c;
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            #main-nav.show { display: flex; }
+            #main-nav a { padding: 10px 20px; width: 100%; text-align: left; }
+        }
+
+
+        /* Layout for About Section */
+        .about-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            /* Replaced top margin with nice vertical centering */
+            padding: 60px 5%;
+        }
+
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Left Side: Image and Socials */
+        .left-side {
+            flex: 1;
+            min-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        /* 3D Flip Card */
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            max-width: 400px;
+            /* appropriately sized */
+            height: 400px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s ease-in-out;
+            transform-style: preserve-3d;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+        }
+
+        /* Flip trigger on hover */
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: #fff;
+            /* Fixes browser invisiblity glitches */
+        }
+
+        /* Make sure the images sit properly and are visible */
+        .flip-card-front img,
+        .flip-card-back img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            /* Ensure no inline margin bugs */
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Social Media Icons (directly under the picture on the left) */
+        .social-icons {
+            display: flex;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff6f3c;
+            /* orange text matching background */
+            font-size: 1.6rem;
+            text-decoration: none;
+            background: white;
+            /* pure white background */
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Right Side: Text */
+        .right-side {
+            flex: 1.5;
+            /* Gives slightly more room to text so it fits */
+            min-width: 320px;
+            text-align: justify;
+            line-height: 1.8;
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .right-side h2 {
+            font-size: 2.2rem;
+            color: #ff6f3c;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .right-side p {
+            font-size: 0.95rem;
+            /* Text size small enough to fit */
+            margin-bottom: 20px;
+            color: #ff6f3c;
+        }
+
+        /* Order Now Button */
+        .btn-order {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 35px;
+            background-color: #ff6f3c;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-order:hover {
+            background-color: #ff7f50;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+
+
+        /* Responsive adjustment for mobiles */
+        @media (max-width: 800px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .right-side h2 {
+                text-align: center;
+            }
+
+            .right-side p {
+                text-align: justify;
+            }
+        }
+
+        /* Mobile Navigation */
+        header {
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ff6f3c;
+                /* Brand color */
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
+                text-align: center;
+            }
+
+            nav.show {
+                display: flex;
+            }
+
+            nav a {
+                margin: 10px 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            nav a:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        }
+    </style>
+
+    <!-- // JS Section // -->
+    <script>
+        // 1. Content Transitions on Page Load
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(() => {
+                const leftSide = document.getElementById("aboutLeft");
+                const rightSide = document.getElementById("aboutRight");
+
+                if (leftSide) {
+                    leftSide.style.opacity = "1";
+                    leftSide.style.transform = "translateX(0)";
+                }
+                if (rightSide) {
+                    rightSide.style.opacity = "1";
+                    rightSide.style.transform = "translateX(0)";
+                }
+            }, 150);
+        });
+
+        // 2. JS Transitions for Social Media Icons
+        const socialLinks = document.querySelectorAll(".social-link");
+
+        socialLinks.forEach(link => {
+            link.style.transition = "all 0.3s ease";
+
+            link.addEventListener("mouseenter", function () {
+                // Slight color shift, popup effect, increased shadow
+                this.style.backgroundColor = "#fff5f0";
+                this.style.transform = "translateY(-6px) scale(1.08)";
+                this.style.boxShadow = "0 8px 25px rgba(0, 0, 0, 0.4)";
+            });
+
+            link.addEventListener("mouseleave", function () {
+                // Standard reset
+                this.style.backgroundColor = "white";
+                this.style.transform = "translateY(0) scale(1)";
+                this.style.boxShadow = "0 5px 15px rgba(0,0,0,0.2)";
+            });
+        });
+    </script>
+
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('show');
+        }
+
+
+    </script>
+    <script src="cart.js"></script>
+
+<script>
+    function toggleNav() {
+        var nav = document.getElementById('main-nav');
+        if(nav) nav.classList.toggle('show');
+    }
+</script>
+</body>
+
+</html>
