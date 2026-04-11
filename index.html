@@ -90,23 +90,17 @@
         }
 
         body {
-            background: #fff8f0; /* soft cream background */
-            color: #333;
-            line-height: 1.6;
-        }
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0; /* Remove default body margins */
+}
 
         /* =========================
             Header & Navigation
         ========================= */
      
 
-        body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff8f0;
-    display: flex;
-    flex-direction: column;
-}
 
 /* Header */
 
@@ -119,46 +113,105 @@
 
 
 
+/* =========================
+    Hero Section
+========================= */
+/* =========================
+   Hero Section Fix
+========================= */
+/* 1. Ensure the Hero Section takes up the full width of the screen */
+.hero {
+    width: 100%;           /* Fills the horizontal space */
+    height: 80vh;          /* Keeps your preferred height */
+    position: relative;
+    overflow: hidden;      /* Prevents horizontal scrollbars */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 2. Force the image to stretch across the empty space */
+.hero-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;           
+    height: 100%;          
+    object-fit: cover;      
+    z-index: 1;
+}
 
 
+.hero-text {
+    position: relative;
+    z-index: 2;            /* Keeps text and buttons above the image */
+    text-align: center;
+    color: #b75c1a;
+}
+main { /* or whatever container holds your image, but not the header */
+    flex: 1; /* Pushes the footer down, if you have one */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;     /* Center vertically */
+    width: 100vw;           /* Ensure full page width is used */
+    background-color: #fff;  /* Or whatever your main background is */
+}
+main img {
+    
+    max-width: 90vw; /* Image will occupy up to 90% of screen width */
+    height: auto;     /* Maintain aspect ratio */
+    
+    
+    margin: 5vw; /* Example: 5% of viewport width on all sides */
+    
+    /* Add optional visual flair, like in the gallery */
+    border-radius: 15px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+}
 
+/* Full-Width (Hero) */
+.hero { /* Replace with your actual hero section container */
+    width: 100vw;      /* Crucial: full viewport width */
+    height: 80vh;      /* You decide the height */
+    position: relative;
+    overflow: hidden;  /* Prevents horizontal scrollbar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.hero-img { /* Apply to the image itself */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;       /* Fills the container's width */
+    height: 100%;      /* Fills the container's height */
+    object-fit: cover;  /* CROPS the image to fit, no stretching */
+    z-index: 1;        /* Puts image behind text */
+}
 
+.hero-text { /* Style for text on top of the image */
+    position: relative;
+    z-index: 2; /* Keeps text above the image */
+    text-align: center;
+    color: #ef8120;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+}
 
-
-        
-
-        
-
-        /* =========================
-            Hero Section
-        ========================= */
-        .hero {
-            position: relative;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
 
       .hero iframe {
     position: absolute;
     top: 50%;
+
     left: 50%;
-    width: 100%;   /* full width */
+    width: 100%;  /* full width */
     height: 100%;  /* full height */
     max-height: 100vh; /* never taller than viewport */
     transform: translate(-50%, -50%);
     object-fit: cover;
 }
 
-        .hero-text {
-            text-align: center;
-            color: #fff;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
-            animation: fadeInUp 1.5s ease forwards;
-        }
+
 
         .hero-text h2 {
             font-size: 3rem;
@@ -293,12 +346,10 @@
 
 <!-- HERO VIDEO -->
 <section class="hero">
-    <iframe 
-        src="https://www.youtube.com/embed/ZnmWg4-y3Ak?autoplay=1&mute=1&loop=1&playlist=ZnmWg4-y3Ak"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-    </iframe>
+   
+    <main>
+    <img src="images2\background6.jpg" alt="Featured Food" class="featured-img">
+</main>
 
     <div class="hero-text">
         
@@ -316,55 +367,55 @@
     <h2>Popular Dishes</h2>
 
     <div class="card">
-        <img src="images\palaw.png">
+        <img src="images2\palaw.png">
         <h3>Qabuli Palaw</h3>
         <p>$10</p>
     </div>
 
     <div class="card">
-        <img src="images\homemade_food.png">
+        <img src="images2\homemade_food.png">
         <h3>Homemade Food</h3>
         <p>$15</p>
     </div>
 
     <div class="card">
-        <img src="images\Chicken Bryani.png">
-        <h3>Chicken Biryani</h3>
+        <img src="images2\Chicken Bryani.png">
+        <h3>Chicken Biryani</h3
         <p>$12</p>
     </div>
     <div class="card">
-        <img src="images\Kofta.png">
+        <img src="images2\Kofta.png">
         <h3>Meatball</h3>
         <p>$12</p>
     </div>
      <div class="card">
-        <img src="images\pasta.png">
+        <img src="images2\pasta.png">
         <h3>Pasta</h3>
         <p>$12</p>
     </div>
     
      <div class="card">
-        <img src="images\kabab.png">
+        <img src="images2\kabab.png">
         <h3>Kabab</h3>
         <p>$12</p>
     </div>
     <div class="card">
-        <img src="images\Manto.png">
+        <img src="images2\Manto.png">
         <h3>Mantoo</h3>
         <p>$12</p>
     </div>
      <div class="card">
-        <img src="images\eggPlant.png">
+        <img src="images2\eggPlant.png">
         <h3>Egg Plant</h3>
         <p>$12</p>
     </div>
      <div class="card">
-        <img src="images\bolani.png">
+        <img src="images2\bolani.png">
         <h3>Bolani</h3>
         <p>$12</p>
     </div>
      <div class="card">
-        <img src="images\Chips.png">
+        <img src="images2\Chips.png">
         <h3>Chips</h3>
         <p>$12</p>
 </section>
